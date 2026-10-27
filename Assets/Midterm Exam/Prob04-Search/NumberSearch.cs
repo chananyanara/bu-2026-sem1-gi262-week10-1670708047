@@ -4,6 +4,8 @@ namespace MidtermExam.Prob04
 {
     public class NumberSearch
     {
+
+
         /// <summary>ข้อ 04.1: ค้นหาตัวเลขด้วย Sequential Search จากต้น array ไปท้าย array</summary>
         /// <param name="values">array ที่อาจไม่เรียงลำดับ มีค่าซ้ำหรือตัวเลขติดลบได้</param>
         /// <param name="target">ค่าที่ต้องการค้นหา</param>
@@ -12,13 +14,24 @@ namespace MidtermExam.Prob04
         /// - ถ้าไม่พบ หรือ input เป็น null หรือเป็น array ว่าง ให้ return -1</returns>
         /// <remarks>
         /// ห้ามเรียงลำดับหรือแก้ไข array และห้ามใช้เมธอดค้นหาสำเร็จรูปหรือ LINQ
-        /// ตัวอย่าง: values = [4, 2, 4, 1], target = 4 ต้องคืน 0 ไม่ใช่ 2
+     
         /// ใช้เวลา O(n) และเขียนคอมเมนต์อธิบายเหตุผลของเวลาที่ใช้เหนือคำตอบ
         /// </remarks>
-        public int AS04_SequentialSearch(int[] values, int target)
+        public int AS04_SequentialSearch()
         {
-            // TODO: เขียนคำตอบแทนคำสั่ง throw ด้านล่าง
-            throw new NotImplementedException();
+            int values = new int[] { 4, 2, 4, 1 };
+            int target = 4;
+            int index = -1;
+
+            for (int i = 0; i < values.Length; i++)
+            {
+                if(values[i] == target)
+                    {
+                    index = i; 
+                    break; 
+                }
+            }
+            return -1;
         }
 
         /// <summary>ข้อ 04.2: ค้นหาตัวเลขด้วย Binary Search โดยลดช่วงค้นหาประมาณครึ่งหนึ่งต่อขั้น</summary>
@@ -30,21 +43,38 @@ namespace MidtermExam.Prob04
         /// index ใดก็ได้ที่มีค่าเท่ากับ target หรือ -1 ถ้าไม่พบ/input เป็น null หรือว่าง
         /// ต่างจาก Sequential Search ในข้อนี้ไม่จำเป็นต้องคืน index แรกของค่าที่ซ้ำ
         /// </returns>
+        
+
         /// <remarks>
         /// ใช้ลูปหรือ recursion ได้ แต่ห้ามค้นหาแบบไล่ทุกสมาชิกหรือเรียกเมธอดค้นหาสำเร็จรูป
         /// ห้ามแก้ไข array ตัวอย่าง: [1, 2, 2, 2, 5] ค้นหา 2 คืน 1, 2 หรือ 3 ได้
         /// ใช้เวลา O(log n) และเขียนคอมเมนต์อธิบายเหตุผลของเวลาที่ใช้เหนือคำตอบ
         /// </remarks>
-        public int AS05_BinarySearch(int[] sortedValues, int target)
+        public int AS05_BinarySearch()
         {
-            // TODO: เขียนคำตอบแทนคำสั่ง throw ด้านล่าง
-            // 1. จัดการ input ที่เป็น null/ว่าง และกำหนดขอบเขต index ของช่วงค้นหา
-            // 2. เลือก index ตรงกลางของช่วง แล้วเปรียบเทียบค่าตรงกลางกับ target
-            // 3. ถ้ายังไม่ตรง ให้เลือกค้นหาต่อเฉพาะครึ่งซ้ายหรือครึ่งขวาตามลำดับค่าที่เรียงไว้
-            //    ต้องตัดตำแหน่งที่ตรวจแล้วออก เพื่อให้ช่วงเล็กลงและไม่เกิดการวนซ้ำไม่จบ
-            // 4. ถ้าช่วงค้นหาหมดและยังไม่พบ ให้คืนค่าที่โจทย์กำหนดสำหรับกรณีไม่พบ
-            // ลองตรวจกรณีสมาชิกเดียว สองสมาชิก เป้าหมายอยู่หัว/ท้าย และเป้าหมายอยู่นอกช่วงค่า
-            throw new NotImplementedException();
+            int sortedValues = new int[] { 1, 2, 2, 2, 5 };
+            int target = 2;
+            int index = -1;
+            int left = 0;
+            int right = sortedValues.Length -1;
+            while (left <= right)
+            {
+                var mid = (left + right) / 2;
+                if (sortedValues[mid] < target)
+                {
+                    index = mid;
+                    break;
+                }
+                else if (sortedValues[mid] < target)
+                {
+                    left = mid + 1;
+                }
+                else if (sortedValues[mid] > target)
+                {
+                    left = mid - 1;
+                }
+            }
+            return index;
         }
     }
 }

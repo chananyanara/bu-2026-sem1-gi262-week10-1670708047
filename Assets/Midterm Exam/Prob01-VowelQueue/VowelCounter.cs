@@ -9,6 +9,7 @@ namespace MidtermExam.Prob01
         /// ข้อ 01: นับจำนวนสระภาษาอังกฤษตัวพิมพ์เล็กในคิว โดยใช้หลัก FIFO
         /// (สมาชิกที่เข้าก่อนออกก่อน) และรักษาสมาชิกกับลำดับของคิวเดิม
         /// </summary>
+        
         /// <param name="alphabets">
         /// คิวข้อความที่ต้องการตรวจ นับเฉพาะ "a", "e", "i", "o", "u" และนับตัวซ้ำทุกตัว
         /// ข้อความอื่น เช่น "A", "ae", ข้อความว่าง และสมาชิก null ไม่นับเป็นสระ
@@ -22,8 +23,14 @@ namespace MidtermExam.Prob01
         /// </remarks>
         public int AS01_CountVowels(Queue<string> alphabets)
         {
-            // TODO: เขียนคำตอบแทนคำสั่ง throw exception ด้านล่าง
-            throw new NotImplementedException();
+           Queue<string> queue = new Queue<string>();
+            queue.Enqueue(alphabets);
+            string count = queue.Count;
+            string dequeued = queue.Dequeue();
+            string peek = queue.Peek();
+             
+            return (count,dequeued,peek);
+
         }
     }
 }
